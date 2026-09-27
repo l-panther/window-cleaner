@@ -1,0 +1,29 @@
+---
+import { COMPANY_NAME, COMPANY_SLOGAN, COMPANY_TELEPHONE, COMPANY_EMAIL } from '../lib/config';
+---
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>More Ways to Contact</h4>
+        <a class="flink" href="tel:07123456789">{COMPANY_TELEPHONE}</a>
+        <a class="flink" href="mailto:info@windowcleaner.com">{COMPANY_EMAIL}</a>
+      </div>
+      <div>
+        <h4>Terms of Use</h4>
+        <a class="flink" href="#">Terms &amp; Conditions</a>
+        <a class="flink" href="#">Privacy Policy</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a class="flink" href="#about">About</a>
+        <a class="flink" href="#services">Our Services</a>
+        <a class="flink" href="#quote">Get A Free Quote</a>
+      </div>
+    </div>
+    <p class="footer-bottom">© <span id="year"></span> {COMPANY_NAME} | {COMPANY_SLOGAN}.  
+      By <span>Leroy Russell</span>. All rights reserved.</p>
+  </div>
+</footer>

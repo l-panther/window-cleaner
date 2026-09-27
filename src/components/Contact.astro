@@ -1,0 +1,76 @@
+<!-- Contact -->
+<section class="contact" id="contact-form">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2>Get In Touch</h2>
+      <p>Don't hesitate to send a message, we're here for all your window cleaning queries. You can also find more ways to contact us below.</p>
+    </div>
+
+    <!-- No JS fallback -->
+    <noscript>
+      <style>
+        #quote-form[novalidate] {
+          display: none;
+        }
+        #quote-form {
+          display: block;
+        }
+      </style>
+    </noscript>
+
+    <form id="quote-form" novalidate>
+      <!-- Form Errors (screen-reader summary only) -->
+      <div id="sr-errors" class="sr-only" hidden role="alert" aria-live="assertive"></div>
+
+      <!-- Success/Error Popup -->
+      <div id="popup" hidden class="popup" role="alert" aria-live="assertive">
+        <div id="popupMessage" tabindex="-1">Message sent successfully</div>
+        <button type="button" id="closePopupButton" class="close-popup" aria-label="Close message">&times;</button>
+      </div>
+
+      <div class="field">
+        <label for="name">Enter your name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          placeholder="Enter name"
+          minlength="2"
+          maxlength="50"
+          pattern="[A-Za-z\s]+"
+          aria-label="Name"
+          aria-describedby="error-name"
+        >
+        <div id="error-name" class="field-error" role="alert"></div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          aria-required="true"
+          aria-label="message"
+          aria-describedby="error-message charCount-wrap"
+          minlength="10"
+          maxlength="200"
+          rows="5"
+          placeholder="Enter message"
+        ></textarea>
+        <div class="message-meta-row">
+          <div id="error-message" class="field-error" role="alert"></div>
+          <div class="char-count" id="charCount-wrap"><span id="count">0</span>/200</div>
+        </div>
+      </div>
+
+      <button class="btn btn-navy w-100" type="submit">
+        <span class="btn-label">Send Message</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+  </div>
+</section>
+

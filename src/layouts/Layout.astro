@@ -1,0 +1,70 @@
+---
+import { COMPANY_NAME, COMPANY_SLOGAN } from '../lib/config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{COMPANY_NAME} | {COMPANY_SLOGAN}</title>
+  <meta name="description" content="Residential, commercial and industrial window cleaning with streak-free results. Professional window cleaning services. Get a free quote today!">
+  <meta name="keywords" content="window cleaning, professional window cleaner, residential, commercial">
+  <meta name="author" content="Leroy Russell">
+
+  <!-- W3.CSS and Custom Styles -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body id="top">
+
+  <Header />
+  <main>
+    <slot /> 
+  </main>
+  <a href="top" id="backToTop" class="pill-top" aria-label="Back to top">
+    Back to top
+  </a>
+  <Footer />
+
+  <!-- JavaScript -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script is:inline src="/assets/js/main.js"></script>
+  <script is:inline>
+
+    const btn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        btn.classList.add("show");
+        btn.setAttribute("aria-hidden", "false");
+      } else {
+        btn.classList.remove("show");
+        btn.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const top = document.getElementById("top");
+      if (top) {
+        top.focus(); // move focus for screen readers
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
+</body>
+</html>
