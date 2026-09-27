@@ -1,4 +1,5 @@
 ---
+import { asset } from '../utils/paths';
 import { COMPANY_NAME, COMPANY_SLOGAN } from '../lib/config';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -18,8 +19,8 @@ import Footer from '../components/Footer.astro';
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href={asset('assets/css/normalize.css')}>
+  <link rel="stylesheet" href={asset('assets/css/styles.css')}>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -37,7 +38,7 @@ import Footer from '../components/Footer.astro';
 
   <!-- JavaScript -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script is:inline src="/assets/js/main.js"></script>
+  <script is:inline src={asset('assets/js/main.js')}></script>
   <script is:inline>
 
     const btn = document.getElementById("backToTop");
