@@ -1,19 +1,23 @@
+---
+import { asset } from '../utils/paths';
+---
+
 <section class="feature-strip" id="services">
   <div class="wrap feature-grid">
     <div class="feature-card" style="--accent:var(--blue);">
       
-      <img src="/assets/images/services/house.png" alt="House logo in blue circle">  
+      <img src={asset('assets/images/services/house.png')} alt="House logo in blue circle">  
       <h3>Residential Homes</h3>
       <p>Expert window cleaning for homes of all sizes, ensuring streak-free, sparkling windows that enhance your living space and curb appeal.</p>
     </div>
     <div class="feature-card" style="--accent:var(--navy);">
-      <img src="/assets/images/services/commercial.png" alt="Commercial logo in blue circle">
+      <img src={asset('assets/images/services/commercial.png')} alt="Commercial logo in blue circle">
       <h3>Commercial Buildings</h3>
       <p>Professional window cleaning for offices and commercial spaces, providing a polished, professional appearance with minimal disruption.</p>
     </div>
     <div class="feature-card" style="--accent:var(--gold-dark);">
-            <img src="/assets/images/services/industrial.png" alt="Industrial logo in blue circle">
-            <h3>Industrial Buildings</h3>
+      <img src={asset('assets/images/services/industrial.png')} alt="Industrial logo in blue circle">
+      <h3>Industrial Buildings</h3>
       <p>Specialized cleaning for large industrial and warehouse facilities, safely reaching high or hard-to-access windows for a spotless finish.</p>
     </div>
   </div>
