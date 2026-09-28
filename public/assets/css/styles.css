@@ -23,7 +23,7 @@
 .pill-top {
   position: fixed;
   bottom: 30px;
-  right: -120px; /* hidden off-screen */
+  right: -130px; /* hidden off-screen */
   transition: right 0.3s ease;
   z-index: 1000;
   padding: 10px 18px;
