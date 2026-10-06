@@ -1,14 +1,44 @@
 <header>
   <div class="wrap">
     <a class="logo" href="#home">
-      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        class="logo-mark"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <rect x="6" y="6" width="36" height="36" rx="8" fill="#2C6C99"/>
-        <path d="M14 24h20M24 14v20" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M17 17l14 14M31 17 17 31" stroke="#F3B70A" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+        <path
+          d="M14 24h20M24 14v20"
+          stroke="#fff"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+        <path
+          d="M17 17l14 14M31 17 17 31"
+          stroke="#F3B70A"
+          stroke-width="2"
+          stroke-linecap="round"
+          opacity=".85"
+        />
       </svg>
-      <span class="logo-text"><b>SC</b><span>WINDOW CLEANING</span></span>
+
+      <span class="logo-text">
+        <b>SC</b>
+        <span>WINDOW CLEANING</span>
+      </span>
     </a>
-    <button class="menu-toggle" id="menuToggle">Menu</button>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-controls="siteNav"
+      aria-expanded="false"
+    >
+      Menu
+    </button>
+
     <nav id="siteNav">
       <a class="navlink is-active" href="#home">Home</a>
       <a class="navlink" href="#about">About</a>
@@ -17,3 +47,68 @@
     </nav>
   </div>
 </header>
+
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header .wrap {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+  }
+
+  #siteNav {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    padding: 20px;
+    background: #fff;
+
+    z-index: 1000;
+  }
+
+  #siteNav.is-open {
+    display: flex;
+  }
+
+  #siteNav a {
+    width: 100%;
+  }
+}
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const siteNav = document.getElementById("siteNav");
+
+if (menuToggle && siteNav) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = siteNav.classList.toggle("is-open");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.textContent = isOpen ? "Close" : "Menu";
+  });
+
+  // Close menu after selecting a link
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "Menu";
+    });
+  });
+}
+</script>
