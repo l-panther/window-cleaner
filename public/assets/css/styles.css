@@ -475,4 +475,15 @@
     padding-top: 18px;
     font-size: 10px;
   }
+
+  .pill-top {
+    font-size: 11px;
+    padding: 8px 14px;
+    bottom: 20px;
+  }
+
+  #backToTop.show {
+    right: 20px;
+  }
+
 }
