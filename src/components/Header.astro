@@ -40,33 +40,101 @@
     </button>
 
     <nav id="siteNav">
-      <a class="navlink is-active" href="#home">Home</a>
+      <a class="navlink" href="#home">Home</a>
       <a class="navlink" href="#about">About</a>
       <a class="navlink" href="#services-list">Our Services</a>
       <a class="btn btn-navy" href="#quote">Get A Free Quote</a>
     </nav>
   </div>
 </header>
-
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const siteNav = document.getElementById("siteNav");
+  const menuToggle = document.getElementById("menuToggle");
+  const siteNav = document.getElementById("siteNav");
 
-if (menuToggle && siteNav) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = siteNav.classList.toggle("is-open");
+  if (menuToggle && siteNav) {
 
-    menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.textContent = isOpen ? "Close" : "Menu";
-  });
+    const navLinks = siteNav.querySelectorAll(".navlink");
 
-  // Close menu after selecting a link
-  siteNav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
+    function closeMenu() {
       siteNav.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.textContent = "Menu";
+    }
+
+    // Update active navigation link
+    function setActiveLink(id) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${id}`;
+
+        link.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    // Toggle mobile menu
+    menuToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("is-open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "Close" : "Menu";
     });
-  });
-}
+
+    // Handle navigation clicks
+    siteNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        const id = link.getAttribute("href")?.replace("#", "");
+
+        if (id) {
+          setActiveLink(id);
+        }
+
+        closeMenu();
+      });
+    });
+
+    // Reset menu when switching to desktop
+    const desktopQuery = window.matchMedia("(min-width: 1101px)");
+
+    desktopQuery.addEventListener("change", (event) => {
+      if (event.matches) closeMenu();
+    });
+
+    if (desktopQuery.matches) closeMenu();
+
+    // Automatically update active link while scrolling
+    const sections = [...navLinks]
+      .map((link) => {
+        const id = link.getAttribute("href")?.slice(1);
+        return id ? document.getElementById(id) : null;
+      })
+      .filter(Boolean);
+
+    function updateActiveOnScroll() {
+      const scrollPosition = window.scrollY + 150;
+      let activeSection = sections[0];
+
+      sections.forEach((section) => {
+        if (section.offsetTop <= scrollPosition) {
+          activeSection = section;
+        }
+      });
+
+      if (activeSection) {
+        setActiveLink(activeSection.id);
+      }
+    }
+
+    window.addEventListener("scroll", updateActiveOnScroll, {
+      passive: true
+    });
+
+    window.addEventListener("resize", updateActiveOnScroll);
+
+    updateActiveOnScroll();
+  }
 </script>
