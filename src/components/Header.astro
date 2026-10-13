@@ -52,7 +52,8 @@
   const siteNav = document.getElementById("siteNav");
 
   if (menuToggle && siteNav) {
-
+    let isNavigating = false;
+    let navigationTimer;
     const navLinks = siteNav.querySelectorAll(".navlink");
 
     function closeMenu() {
@@ -88,11 +89,24 @@
     siteNav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         const id = link.getAttribute("href")?.replace("#", "");
-
+    
         if (id) {
+          // Prevent scrolling from overriding the clicked link
+          isNavigating = true;
+    
+          // Immediately highlight the selected link
           setActiveLink(id);
+    
+          // Clear any previous navigation timer
+          clearTimeout(navigationTimer);
+    
+          // Resume scroll detection after smooth scrolling
+          navigationTimer = setTimeout(() => {
+            isNavigating = false;
+            updateActiveOnScroll();
+          }, 1000);
         }
-
+    
         closeMenu();
       });
     });
@@ -115,15 +129,19 @@
       .filter(Boolean);
 
     function updateActiveOnScroll() {
+
+      // Ignore scroll events during navigation
+      if (isNavigating) return;
+    
       const scrollPosition = window.scrollY + 150;
       let activeSection = sections[0];
-
+    
       sections.forEach((section) => {
         if (section.offsetTop <= scrollPosition) {
           activeSection = section;
         }
       });
-
+    
       if (activeSection) {
         setActiveLink(activeSection.id);
       }
