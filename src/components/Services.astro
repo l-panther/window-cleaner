@@ -1,4 +1,100 @@
 
+---
+import { asset } from '../utils/paths';
+---
+
+<!-- Services -->
+<section id="services-list" class="services-detail">
+  <div class="wrap services-layout">
+
+    <!-- SERVICE CONTENT -->
+    <div class="services-content">
+
+      <div class="service-block">
+        <p class="eyebrow">01</p>
+        <h3>Residential Service</h3>
+        <p>
+          Our residential window cleaning service is designed
+          to make your home sparkle. Using streak-free techniques
+          and eco-friendly products, we ensure every window,
+          frame, and sill is spotless — from single-story
+          houses to multi-level homes.
+        </p>
+      </div>
+
+      <div class="service-block">
+        <p class="eyebrow">02</p>
+        <h3>Commercial Service</h3>
+        <p>
+          For commercial buildings, we provide a comprehensive
+          window cleaning solution tailored to your business.
+          Our team works efficiently with minimal disruption,
+          focused on safety, high-quality finishes, and a
+          polished professional image.
+        </p>
+      </div>
+
+      <div class="service-block">
+        <p class="eyebrow">03</p>
+        <h3>Industrial Service</h3>
+        <p>
+          Our industrial window cleaning service is built
+          to handle large-scale facilities, warehouses,
+          and factories. Equipped with specialized tools
+          and safety equipment, we reach high or
+          difficult-to-access windows safely.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- IMAGE GALLERY -->
+    <div class="services-gallery">
+
+      <!-- LARGE IMAGE -->
+      <div class="services-image-main">
+        <img
+          src={asset('assets/images/services/cleaning-main.webp')}
+          alt="Professional window cleaning service"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- THREE SMALL IMAGES -->
+      <div class="services-image-grid">
+
+        <div class="services-image-small">
+          <img
+            src={asset('assets/images/services/residential.webp')}
+            alt="Residential window cleaning"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="services-image-small">
+          <img
+            src={asset('assets/images/services/commercial.webp')}
+            alt="Commercial window cleaning"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="services-image-small">
+          <img
+            src={asset('assets/images/services/industrial.webp')}
+            alt="Industrial window cleaning"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+
 /* -------------------------
    SERVICES LAYOUT
 -------------------------- */
@@ -102,3 +198,5 @@
     aspect-ratio: 1 / 1;
   }
 }
+
+</style>
