@@ -1,29 +1,194 @@
 ---
-import { COMPANY_NAME, COMPANY_SLOGAN, COMPANY_TELEPHONE, COMPANY_EMAIL } from '../lib/config';
+import {
+  COMPANY_NAME,
+  COMPANY_SLOGAN,
+  COMPANY_TELEPHONE,
+  COMPANY_EMAIL
+} from '../lib/config';
+
+const year = new Date().getFullYear();
+const telephoneHref = `tel:${COMPANY_TELEPHONE.replace(/[^\d+]/g, '')}`;
+const emailHref = `mailto:${COMPANY_EMAIL}`;
 ---
 
-<!-- Footer -->
 <footer>
   <div class="wrap">
+
     <div class="footer-grid">
-      <div>
+
+      <!-- Contact -->
+      <div class="footer-column">
         <h4>More Ways to Contact</h4>
-        <a class="flink" href="tel:07123456789">{COMPANY_TELEPHONE}</a>
-        <a class="flink" href="mailto:info@windowcleaner.com">{COMPANY_EMAIL}</a>
+
+        <a class="flink" href={telephoneHref}>
+          {COMPANY_TELEPHONE}
+        </a>
+
+        <a class="flink" href={emailHref}>
+          {COMPANY_EMAIL}
+        </a>
       </div>
-      <div>
+
+      <!-- Legal -->
+      <div class="footer-column">
         <h4>Terms of Use</h4>
-        <a class="flink" href="#">Terms &amp; Conditions</a>
-        <a class="flink" href="#">Privacy Policy</a>
+
+        <a class="flink" href="/terms/">
+          Terms &amp; Conditions
+        </a>
+
+        <a class="flink" href="/privacy/">
+          Privacy Policy
+        </a>
       </div>
-      <div>
+
+      <!-- Company -->
+      <div class="footer-column">
         <h4>Company</h4>
+
         <a class="flink" href="#about">About</a>
-        <a class="flink" href="#services">Our Services</a>
-        <a class="flink" href="#quote">Get A Free Quote</a>
+
+        <a class="flink" href="#services-list">
+          Our Services
+        </a>
+
+        <a class="flink" href="#quote">
+          Get A Free Quote
+        </a>
       </div>
+
     </div>
-    <p class="footer-bottom">© <span id="year"></span> {COMPANY_NAME} | {COMPANY_SLOGAN}. All rights reserved.
-      By <span>Leroy Russell</span>.</p>
+
+    <!-- Copyright -->
+    <p class="footer-bottom">
+      &copy; {year} {COMPANY_NAME} |
+      {COMPANY_SLOGAN}. All rights reserved.
+      <span class="footer-credit">
+        Designed by <span>Leroy Russell</span>.
+      </span>
+    </p>
+
   </div>
 </footer>
+
+
+<style>
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.72);
+  padding: 40px 0 22px;
+}
+
+/* ==========================================
+   FOOTER GRID
+========================================== */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+footer h4 {
+  margin-bottom: 11px;
+  color: var(--gold);
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ==========================================
+   FOOTER LINKS
+========================================== */
+
+footer a.flink {
+  display: block;
+  width: fit-content;
+  margin-bottom: 7px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a.flink:hover {
+  color: var(--gold);
+}
+
+/* ==========================================
+   COPYRIGHT & CREDIT
+========================================== */
+
+.footer-bottom {
+  margin: 0;
+  padding-top: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.footer-credit {
+  margin-left: 4px;
+  font-size: 0.8em;
+}
+
+.footer-credit span {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 960px) {
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+  }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  footer {
+    padding: 32px 0 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-bottom: 22px;
+  }
+
+  .footer-bottom {
+    padding-top: 16px;
+    line-height: 1.8;
+  }
+
+  .footer-credit {
+    display: block;
+    margin-left: 0;
+  }
+
+}
+</style>
