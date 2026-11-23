@@ -1,7 +1,59 @@
+
 <section class="cta-band" id="quote">
   <div class="wrap">
     <h2>Request A <em>Free</em> Quote</h2>
-    <p>Let us know your needs and we'll get back with a quote quickly.</p>
-    <a class="btn btn-navy" href="#contact-form">Get Quote</a>
+
+    <p>
+      Let us know your needs and we'll get back
+      with a quote quickly.
+    </p>
+
+    <a class="btn btn-navy" href="#contact">
+      Get Quote
+    </a>
   </div>
 </section>
+
+<style>
+  /* ==========================================
+     CTA BAND
+  ========================================== */
+
+  .cta-band {
+    padding: 64px 0;
+    background: linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+    text-align: center;
+  }
+
+  .cta-band h2 {
+    color: var(--navy);
+  }
+
+  .cta-band h2 em {
+    color: #fff;
+    font-style: normal;
+  }
+
+  .cta-band p {
+    margin-bottom: 26px;
+    color: rgba(19, 44, 66, 0.75);
+  }
+
+  /* ==========================================
+     MOBILE
+  ========================================== */
+
+  @media (max-width: 600px) {
+    .cta-band {
+      padding: 45px 0;
+    }
+
+    .cta-band p {
+      margin-bottom: 20px;
+    }
+  }
+</style>
