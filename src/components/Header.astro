@@ -1,194 +1,369 @@
----
-import {
-  COMPANY_NAME,
-  COMPANY_SLOGAN,
-  COMPANY_TELEPHONE,
-  COMPANY_EMAIL
-} from '../lib/config';
-
-const year = new Date().getFullYear();
-const telephoneHref = `tel:${COMPANY_TELEPHONE.replace(/[^\d+]/g, '')}`;
-const emailHref = `mailto:${COMPANY_EMAIL}`;
----
-
-<footer>
+<header>
   <div class="wrap">
+    <a class="logo" href="#home">
+      <svg
+        class="logo-mark"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="6" y="6" width="36" height="36" rx="8" fill="#2C6C99"/>
+        <path
+          d="M14 24h20M24 14v20"
+          stroke="#fff"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+        <path
+          d="M17 17l14 14M31 17 17 31"
+          stroke="#F3B70A"
+          stroke-width="2"
+          stroke-linecap="round"
+          opacity=".85"
+        />
+      </svg>
 
-    <div class="footer-grid">
-
-      <!-- Contact -->
-      <div class="footer-column">
-        <h4>More Ways to Contact</h4>
-
-        <a class="flink" href={telephoneHref}>
-          {COMPANY_TELEPHONE}
-        </a>
-
-        <a class="flink" href={emailHref}>
-          {COMPANY_EMAIL}
-        </a>
-      </div>
-
-      <!-- Legal -->
-      <div class="footer-column">
-        <h4>Terms of Use</h4>
-
-        <a class="flink" href="/terms/">
-          Terms &amp; Conditions
-        </a>
-
-        <a class="flink" href="/privacy/">
-          Privacy Policy
-        </a>
-      </div>
-
-      <!-- Company -->
-      <div class="footer-column">
-        <h4>Company</h4>
-
-        <a class="flink" href="#about">About</a>
-
-        <a class="flink" href="#services-list">
-          Our Services
-        </a>
-
-        <a class="flink" href="#quote">
-          Get A Free Quote
-        </a>
-      </div>
-
-    </div>
-
-    <!-- Copyright -->
-    <p class="footer-bottom">
-      &copy; {year} {COMPANY_NAME} |
-      {COMPANY_SLOGAN}. All rights reserved.
-      <span class="footer-credit">
-        Designed by <span>Leroy Russell</span>.
+      <span class="logo-text">
+        <b>SC</b>
+        <span>WINDOW CLEANING</span>
       </span>
-    </p>
+    </a>
 
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-controls="siteNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      Menu
+    </button>
+
+    <nav id="siteNav">
+      <a class="navlink" href="#home">Home</a>
+      <a class="navlink" href="#about">About</a>
+      <a class="navlink" href="#services-list">Our Services</a>
+      <a class="btn btn-navy" href="#quote">Get A Free Quote</a>
+    </nav>
   </div>
-</footer>
+</header>
 
 
 <style>
-
+  
 /* ==========================================
-   FOOTER
+   HEADER
 ========================================== */
 
-footer {
-  background: var(--ink);
-  color: rgba(255, 255, 255, 0.72);
-  padding: 40px 0 22px;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 32px;
 }
 
 /* ==========================================
-   FOOTER GRID
+   LOGO
 ========================================== */
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 25px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
-/* ==========================================
-   HEADINGS
-========================================== */
-
-footer h4 {
-  margin-bottom: 11px;
-  color: var(--gold);
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  flex: none;
 }
 
-/* ==========================================
-   FOOTER LINKS
-========================================== */
-
-footer a.flink {
+.logo-text b {
   display: block;
-  width: fit-content;
-  margin-bottom: 7px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 12px;
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+}
+
+.logo-text span {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+}
+
+/* ==========================================
+   DESKTOP NAVIGATION
+========================================== */
+
+#siteNav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-head);
+}
+
+#siteNav a.navlink {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-footer a.flink:hover {
-  color: var(--gold);
+#siteNav a.navlink:hover,
+#siteNav a.navlink.is-active {
+  color: var(--blue);
+}
+
+#siteNav a.navlink.is-active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+
+/* Hidden on desktop */
+
+.menu-toggle {
+  display: none;
 }
 
 /* ==========================================
-   COPYRIGHT & CREDIT
+   TABLET / MOBILE NAVIGATION
 ========================================== */
 
-.footer-bottom {
-  margin: 0;
-  padding-top: 18px;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 10px;
-  line-height: 1.7;
-  text-align: center;
-}
+@media (max-width: 1100px) {
 
-.footer-credit {
-  margin-left: 4px;
-  font-size: 0.8em;
-}
-
-.footer-credit span {
-  color: var(--gold);
-  font-weight: 600;
-}
-
-/* ==========================================
-   TABLET
-========================================== */
-
-@media (max-width: 960px) {
-
-  .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 30px;
+  header .wrap {  padding: 8px 15px; }
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 9px 12px;
+    background: transparent;
+    border: 1px solid var(--navy);
+    border-radius: 6px;
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
   }
 
+  .menu-toggle:hover {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  #siteNav {
+    display: none;
+  }
+
+  #siteNav.is-open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 60;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    padding: 20px 32px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 30px -18px rgba(0, 0, 0, 0.25);
+  }
+
+  #siteNav.is-open a {
+    width: 100%;
+  }
+
+  #siteNav a.navlink {
+    padding: 12px 14px;
+  }
+
+  /* Remove desktop underline on mobile */
+
+  #siteNav a.navlink.is-active::after {
+    display: none;
+  }
+
+  #siteNav a.navlink.is-active {
+    background: rgba(44, 108, 153, 0.08);
+  }
 }
 
 /* ==========================================
-   MOBILE
+   SMALL MOBILE
 ========================================== */
 
 @media (max-width: 600px) {
 
-  footer {
-    padding: 32px 0 20px;
+  header .wrap {
+    gap: 12px;
+    padding: 12px 20px;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding-bottom: 22px;
+  .logo-mark {
+    width: 36px;
+    height: 36px;
   }
 
-  .footer-bottom {
-    padding-top: 16px;
-    line-height: 1.8;
+  .logo-text b {
+    font-size: 18px;
   }
 
-  .footer-credit {
-    display: block;
-    margin-left: 0;
+  .logo-text span {
+    font-size: 9px;
   }
 
+  #siteNav.is-open {
+    padding: 16px 20px 20px;
+  }
 }
 </style>
+
+
+<script is:inline>
+  const menuToggle = document.getElementById("menuToggle");
+  const siteNav = document.getElementById("siteNav");
+
+  if (menuToggle && siteNav) {
+    let isNavigating = false;
+    let navigationTimer;
+    const navLinks = siteNav.querySelectorAll(".navlink");
+
+    function closeMenu() {
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "Menu";
+    }
+
+    // Update active navigation link
+    function setActiveLink(id) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${id}`;
+
+        link.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    // Toggle mobile menu
+    menuToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("is-open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "Close" : "Menu";
+    });
+
+    // Handle navigation clicks
+    siteNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        const id = link.getAttribute("href")?.replace("#", "");
+    
+        if (id) {
+          // Prevent scrolling from overriding the clicked link
+          isNavigating = true;
+    
+          // Immediately highlight the selected link
+          setActiveLink(id);
+    
+          // Clear any previous navigation timer
+          clearTimeout(navigationTimer);
+    
+          // Resume scroll detection after smooth scrolling
+          navigationTimer = setTimeout(() => {
+            isNavigating = false;
+            updateActiveOnScroll();
+          }, 1000);
+        }
+    
+        closeMenu();
+      });
+    });
+
+    // Reset menu when switching to desktop
+    const desktopQuery = window.matchMedia("(min-width: 1101px)");
+
+    desktopQuery.addEventListener("change", (event) => {
+      if (event.matches) closeMenu();
+    });
+
+    if (desktopQuery.matches) closeMenu();
+
+    // Automatically update active link while scrolling
+    const sections = [...navLinks]
+      .map((link) => {
+        const id = link.getAttribute("href")?.slice(1);
+        return id ? document.getElementById(id) : null;
+      })
+      .filter(Boolean);
+
+    function updateActiveOnScroll() {
+
+      // Ignore scroll events during navigation
+      if (isNavigating) return;
+    
+      const header = document.querySelector("header");
+      const scrollPosition =
+        window.scrollY +
+        (header?.offsetHeight ?? 0) +
+        40;
+      let activeSection = sections[0];
+    
+      sections.forEach((section) => {
+        if (section.offsetTop <= scrollPosition) {
+          activeSection = section;
+        }
+      });
+    
+      if (activeSection) {
+        setActiveLink(activeSection.id);
+      }
+    }
+
+    window.addEventListener("scroll", updateActiveOnScroll, {
+      passive: true
+    });
+
+    window.addEventListener("resize", updateActiveOnScroll);
+
+    updateActiveOnScroll();
+  }
+</script>
