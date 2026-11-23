@@ -5,13 +5,130 @@ import { asset } from '../utils/paths';
 <section class="welcome" id="about">
   <div class="wrap">
     <div class="welcome-art">
-      <img src={asset('assets/images/welcome/window-cleaner.jpg')} alt="" />
+      <img
+        src={asset('assets/images/welcome/window-cleaner.jpg')}
+        alt="Professional window cleaner at work"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div>
       <p class="eyebrow">Who we are</p>
       <h2>Welcome to SC Window Cleaning</h2>
       <p>We're delighted you've found us. At SC Window Cleaning, we believe that clean windows are the key to letting the sunshine in and brightening up your space. Whether you're a homeowner looking to refresh your view or a business seeking a professional, polished appearance, we're here to help.</p>
-      <p>From residential to commercial window cleaning, we use the latest techniques and eco-friendly products to ensure streak-free, crystal-clear results every time. Explore our services below and discover how we can help your windows shine.</p>
+      <p>From residential homes to commercial properties, we combine professional cleaning techniques with careful attention to detail, delivering sparkling, streak-free windows you can enjoy. Explore our services below and discover how we can help your windows shine.</p>
     </div>
   </div>
 </section>
+
+
+<style>
+
+/* ==========================================
+   WELCOME / ABOUT SECTION
+========================================== */
+
+.welcome {
+  padding: 88px 0;
+}
+
+.welcome .wrap {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.75fr)
+    minmax(0, 1.25fr);
+  align-items: center;
+  gap: 56px;
+}
+
+/* ==========================================
+   WELCOME IMAGE
+========================================== */
+
+.welcome-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 3px solid #3a98d6;
+  border-radius: 50%;
+  background: radial-gradient(
+    120% 120% at 30% 20%,
+    #dcebf6,
+    var(--sky)
+  );
+  box-shadow: var(--shadow);
+}
+
+.welcome-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ==========================================
+   WELCOME CONTENT
+========================================== */
+
+.welcome .eyebrow {
+  margin-bottom: 12px;
+}
+
+.welcome h2 {
+  margin-bottom: 20px;
+}
+
+.welcome p {
+  line-height: 1.7;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 960px) {
+
+  .welcome {
+    padding: 65px 0;
+  }
+
+  .welcome .wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .welcome-art {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .welcome {
+    padding: 55px 0;
+  }
+
+  .welcome .wrap {
+    gap: 28px;
+  }
+
+  .welcome-art {
+    max-width: 210px;
+  }
+
+  .welcome h2 {
+    margin-bottom: 16px;
+  }
+
+  .welcome p {
+    font-size: 0.9rem;
+  }
+}
+</style>
