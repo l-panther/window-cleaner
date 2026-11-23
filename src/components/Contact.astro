@@ -1,5 +1,5 @@
 <!-- Contact -->
-<section class="contact" id="contact-form">
+<section class="contact" id="contact">
   <div class="wrap">
     <div>
       <p class="eyebrow">Get in touch</p>
@@ -10,16 +10,16 @@
     <!-- No JS fallback -->
     <noscript>
       <style>
-        #quote-form[novalidate] {
+        #contact-form[novalidate] {
           display: none;
         }
-        #quote-form {
+        #contact-form {
           display: block;
         }
       </style>
     </noscript>
 
-    <form id="quote-form" novalidate>
+    <form id="contact-form" novalidate>
       <!-- Form Errors (screen-reader summary only) -->
       <div id="sr-errors" class="sr-only" hidden role="alert" aria-live="assertive"></div>
 
@@ -36,14 +36,33 @@
           name="name"
           type="text"
           required
+          autocomplete="name"
           placeholder="Enter name"
           minlength="2"
           maxlength="50"
-          pattern="[A-Za-z\s]+"
-          aria-label="Name"
           aria-describedby="error-name"
-        >
+        />
         <div id="error-name" class="field-error" role="alert"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address</label>
+
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          maxlength="254"
+          placeholder="Enter email address"
+          aria-describedby="error-email"
+        />
+
+        <div
+          id="error-email"
+          class="field-error"
+        ></div>
       </div>
 
       <div class="field">
@@ -52,8 +71,6 @@
           id="message"
           name="message"
           required
-          aria-required="true"
-          aria-label="message"
           aria-describedby="error-message charCount-wrap"
           minlength="10"
           maxlength="200"
@@ -74,3 +91,665 @@
   </div>
 </section>
 
+<style>
+
+/* ==========================================
+   CONTACT SECTION
+========================================== */
+
+.contact {
+  padding: 92px 0;
+  background: var(--grey);
+}
+
+.contact .wrap {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ==========================================
+   FORM FIELDS
+========================================== */
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-head);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(44, 108, 153, 0.12);
+}
+
+/* ==========================================
+   VALIDATION
+========================================== */
+
+.field-error {
+  min-height: 1.1em;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #c0392b;
+}
+
+.field input.error,
+.field textarea.error {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 1px rgba(192, 57, 43, 0.2);
+}
+
+/* ==========================================
+   CHARACTER COUNTER
+========================================== */
+
+.message-meta-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.message-meta-row .field-error {
+  flex: 1;
+  min-width: 0;
+  margin-top: 0;
+}
+
+.char-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--text-soft);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   SUCCESS / ERROR POPUP
+========================================== */
+
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border: 1px solid #bfe0b3;
+  border-radius: 8px;
+  background: #eaf4e6;
+  color: #345c28;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.popup[hidden] {
+  display: none;
+}
+
+.popup--error {
+  background: #fdf2f2;
+  border-color: #f3b8b8;
+  color: #8f2f2f;
+}
+
+.close-popup {
+  flex-shrink: 0;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.close-popup:hover {
+  opacity: 1;
+}
+
+.close-popup:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   SUBMIT BUTTON / LOADING
+========================================== */
+
+#contact-form button[type="submit"] {
+  position: relative;
+  width: 100%;
+}
+
+#contact-form button[type="submit"]:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+#contact-form button.is-loading .btn-label {
+  visibility: hidden;
+}
+
+.btn-spinner {
+  display: none;
+}
+
+#contact-form button.is-loading .btn-spinner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-spinner {
+    animation-duration: 1.5s;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 960px) {
+
+  .contact {
+    padding: 70px 0;
+  }
+
+  .contact .wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .contact {
+    padding: 52px 0;
+  }
+
+  .contact .wrap {
+    gap: 24px;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  .popup {
+    padding: 12px 14px;
+  }
+}
+</style>
+
+
+
+<script>
+  /* ==========================================
+     CONTACT FORM
+  ========================================== */
+
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+
+  if (form) {
+    const submitBtn = form.querySelector<HTMLButtonElement>(
+      'button[type="submit"]'
+    );
+
+    const popup = document.getElementById('popup');
+    const popupMessage = document.getElementById('popupMessage');
+
+    const closePopupButton =
+      document.querySelector<HTMLButtonElement>('#closePopupButton');
+
+    const srErrors = document.getElementById('sr-errors');
+
+    const nameEl =
+      form.querySelector<HTMLInputElement>('#name');
+
+    const emailEl =
+      form.querySelector<HTMLInputElement>('#email');
+
+    const messageEl =
+      form.querySelector<HTMLTextAreaElement>('#message');
+
+    const countEl = document.getElementById('count');
+
+    if (
+      submitBtn &&
+      popup &&
+      popupMessage &&
+      closePopupButton &&
+      srErrors &&
+      nameEl &&
+      emailEl &&
+      messageEl &&
+      countEl
+    ) {
+      // Keep references narrowed for all functions.
+      const button = submitBtn;
+      const popupEl = popup;
+      const popupText = popupMessage;
+      const errorSummary = srErrors;
+      const counter = countEl;
+      const contactForm = form;
+
+      let popupTimer: ReturnType<typeof setTimeout> | undefined;
+
+      /* ==========================================
+         FIELD CONFIGURATION
+      ========================================== */
+
+      type FieldName = 'name' | 'email' | 'message';
+
+      const fields: Record<
+        FieldName,
+        HTMLInputElement | HTMLTextAreaElement
+      > = {
+        name: nameEl,
+        email: emailEl,
+        message: messageEl
+      };
+
+      const fieldNames: FieldName[] = [
+        'name',
+        'email',
+        'message'
+      ];
+
+      /* ==========================================
+         VALIDATORS
+      ========================================== */
+
+      const validators: Record<
+        FieldName,
+        (value: string) => string
+      > = {
+        name(value: string): string {
+          const v = value.trim();
+
+          if (!v) {
+            return 'Please enter your name.';
+          }
+
+          if (v.length < 2) {
+            return 'Name must be at least 2 characters.';
+          }
+
+          if (v.length > 50) {
+            return 'Name cannot exceed 50 characters.';
+          }
+
+          if (!/^[\p{L}\p{M}\s'-]+$/u.test(v)) {
+            return 'Please enter a valid name.';
+          }
+
+          return '';
+        },
+
+        email(value: string): string {
+          const v = value.trim();
+
+          if (!v) {
+            return 'Please enter your email address.';
+          }
+
+          if (!emailEl.checkValidity()) {
+            return 'Please enter a valid email address.';
+          }
+
+          return '';
+        },
+
+        message(value: string): string {
+          const v = value.trim();
+
+          if (!v) {
+            return 'Please enter a message.';
+          }
+
+          if (v.length < 10) {
+            return 'Message must be at least 10 characters.';
+          }
+
+          if (messageEl.value.length > 200) {
+            return 'Message cannot exceed 200 characters.';
+          }
+
+          return '';
+        }
+      };
+
+      /* ==========================================
+         CHARACTER COUNTER
+      ========================================== */
+
+      const messageField = messageEl;
+
+      function updateCharCount(): void {
+        counter.textContent = String(messageField.value.length);
+      }
+
+      messageEl.addEventListener('input', updateCharCount);
+
+      updateCharCount();
+
+      /* ==========================================
+         FIELD ERRORS
+      ========================================== */
+
+      function setFieldError(
+        name: FieldName,
+        message: string
+      ): void {
+        const field = fields[name];
+
+        const errorEl = document.getElementById(
+          `error-${name}`
+        );
+
+        if (!errorEl) return;
+
+        const hasError = Boolean(message);
+
+        field.classList.toggle('error', hasError);
+
+        field.setAttribute(
+          'aria-invalid',
+          String(hasError)
+        );
+
+        errorEl.textContent = message;
+      }
+
+      function validateField(name: FieldName): boolean {
+        const field = fields[name];
+
+        const error = validators[name](field.value);
+
+        setFieldError(name, error);
+
+        return !error;
+      }
+
+      /* ==========================================
+         LIVE VALIDATION
+      ========================================== */
+
+      fieldNames.forEach((name: FieldName) => {
+        const field = fields[name];
+
+        field.addEventListener('blur', () => {
+          validateField(name);
+        });
+
+        field.addEventListener('input', () => {
+          if (field.classList.contains('error')) {
+            validateField(name);
+          }
+        });
+      });
+
+      /* ==========================================
+         VALIDATE ALL FIELDS
+      ========================================== */
+
+      function validateAll(): boolean {
+        let isValid = true;
+
+        const messages: string[] = [];
+
+        fieldNames.forEach((name: FieldName) => {
+          if (!validateField(name)) {
+            isValid = false;
+
+            const errorEl = document.getElementById(
+              `error-${name}`
+            );
+
+            if (errorEl?.textContent) {
+              messages.push(errorEl.textContent);
+            }
+          }
+        });
+
+        if (!isValid) {
+          errorSummary.hidden = false;
+
+          errorSummary.textContent =
+            `Please fix the following: ${messages.join(' ')}`;
+
+          const firstInvalid = fieldNames.find(
+            (name: FieldName) =>
+              fields[name].classList.contains('error')
+          );
+
+          if (firstInvalid) {
+            fields[firstInvalid].focus();
+          }
+        } else {
+          errorSummary.hidden = true;
+          errorSummary.textContent = '';
+        }
+
+        return isValid;
+      }
+
+      /* ==========================================
+         POPUP
+      ========================================== */
+
+      function closePopup(): void {
+        clearTimeout(popupTimer);
+        popupTimer = undefined;
+
+        popupEl.hidden = true;
+      }
+
+      function openPopup(
+        message: string,
+        isError: boolean = false
+      ): void {
+        clearTimeout(popupTimer);
+
+        popupEl.classList.toggle(
+          'popup--error',
+          isError
+        );
+
+        popupEl.setAttribute(
+          'role',
+          isError ? 'alert' : 'status'
+        );
+
+        popupEl.setAttribute(
+          'aria-live',
+          isError ? 'assertive' : 'polite'
+        );
+
+        popupText.textContent = message;
+        popupEl.hidden = false;
+
+        popupText.focus();
+
+        popupTimer = setTimeout(() => {
+          closePopup();
+        }, 6000);
+      }
+
+      closePopupButton.addEventListener('click', () => {
+        closePopup();
+        button.focus();
+      });
+
+      document.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && !popupEl.hidden) {
+          closePopup();
+          button.focus();
+        }
+      });
+
+      /* ==========================================
+         SIMULATED SUBMISSION
+      ========================================== */
+
+      type FormPayload = Record<
+        string,
+        FormDataEntryValue
+      >;
+
+      type SubmitResult = {
+        ok: boolean;
+      };
+
+      function fakeServerSubmit(
+        _payload: FormPayload
+      ): Promise<SubmitResult> {
+        return new Promise<SubmitResult>((resolve) => {
+          setTimeout(() => {
+            resolve({ ok: true });
+          }, 800);
+        });
+      }
+
+      /* ==========================================
+         FORM SUBMISSION
+      ========================================== */
+
+      contactForm.addEventListener(
+        'submit',
+        async (event: SubmitEvent): Promise<void> => {
+          event.preventDefault();
+
+          if (button.disabled) return;
+
+          if (!validateAll()) return;
+
+          button.classList.add('is-loading');
+          button.disabled = true;
+          button.setAttribute('aria-busy', 'true');
+
+          const payload: FormPayload = Object.fromEntries(
+            new FormData(contactForm).entries()
+          );
+
+          try {
+            const result = await fakeServerSubmit(payload);
+
+            if (!result.ok) {
+              throw new Error('Submission failed');
+            }
+
+            contactForm.reset();
+
+            updateCharCount();
+
+            fieldNames.forEach((name: FieldName) => {
+              setFieldError(name, '');
+            });
+
+            errorSummary.hidden = true;
+            errorSummary.textContent = '';
+
+            openPopup(
+              'Demo submission successful — no message was sent.'
+            );
+
+          } catch (error: unknown) {
+            console.error('Contact form error:', error);
+
+            openPopup(
+              'Something went wrong. Please try again.',
+              true
+            );
+
+          } finally {
+            button.classList.remove('is-loading');
+            button.disabled = false;
+            button.removeAttribute('aria-busy');
+          }
+        }
+      );
+    }
+  }
+</script>
