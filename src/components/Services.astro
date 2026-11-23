@@ -56,6 +56,7 @@ import { asset } from '../utils/paths';
           src={asset('assets/images/services/cleaning-main.webp')}
           alt="Professional window cleaning service"
           loading="lazy"
+          decoding="async"
         />
       </div>
 
@@ -67,6 +68,7 @@ import { asset } from '../utils/paths';
             src={asset('assets/images/services/residential.webp')}
             alt="Residential window cleaning"
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -75,6 +77,7 @@ import { asset } from '../utils/paths';
             src={asset('assets/images/services/commercial.webp')}
             alt="Commercial window cleaning"
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -83,6 +86,7 @@ import { asset } from '../utils/paths';
             src={asset('assets/images/services/industrial.webp')}
             alt="Industrial window cleaning"
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -92,17 +96,34 @@ import { asset } from '../utils/paths';
   </div>
 </section>
 
+
 <style>
 
-/* -------------------------
-   SERVICES LAYOUT
--------------------------- */
+/* ==========================================
+   SERVICES SECTION
+========================================== */
 
-.services-layout {
+.services-detail {
+  padding: 96px 0;
+  background: linear-gradient(
+    180deg,
+    var(--blue-dark),
+    var(--navy)
+  );
+  color: #fff;
+}
+
+/* ==========================================
+   SERVICES LAYOUT
+========================================== */
+
+.services-detail .services-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 3rem;
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
+  align-items: start;
+  gap: 56px;
 }
 
 .services-content,
@@ -110,9 +131,39 @@ import { asset } from '../utils/paths';
   min-width: 0;
 }
 
-/* -------------------------
+/* ==========================================
+   SERVICE CONTENT
+========================================== */
+
+.service-block {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.service-block:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.service-block .eyebrow {
+  color: var(--gold);
+}
+
+.service-block h3 {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.service-block p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+/* ==========================================
    IMAGE GALLERY
--------------------------- */
+========================================== */
 
 .services-gallery {
   display: flex;
@@ -124,17 +175,19 @@ import { asset } from '../utils/paths';
 .services-image-main,
 .services-image-small {
   overflow: hidden;
-  border-radius: 5px;
   border: 1px solid rgba(107, 163, 214, 0.2);
+  border-radius: 5px;
   background: #f1f5f9;
 }
 
-/* Main featured image */
+/* Featured image */
+
 .services-image-main {
   aspect-ratio: 16 / 10;
 }
 
-/* Three equal images */
+/* Three smaller images */
+
 .services-image-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -146,6 +199,7 @@ import { asset } from '../utils/paths';
 }
 
 /* Images */
+
 .services-gallery img {
   display: block;
   width: 100%;
@@ -155,33 +209,56 @@ import { asset } from '../utils/paths';
   transition: transform 0.4s ease;
 }
 
-/* Subtle hover effect */
-.services-gallery img:hover {
-  transform: scale(1.04);
+/* Hover effect */
+
+@media (hover: hover) {
+  .services-gallery img:hover {
+    transform: scale(1.04);
+  }
 }
 
-/* -------------------------
+/* ==========================================
    TABLET
--------------------------- */
+========================================== */
 
-@media (max-width: 991.98px) {
-  .services-layout {
+@media (max-width: 960px) {
+
+  .services-detail .services-layout {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 40px;
   }
 
   .services-image-main {
     aspect-ratio: 16 / 9;
   }
+
 }
 
-/* -------------------------
+/* ==========================================
    MOBILE
--------------------------- */
+========================================== */
 
-@media (max-width: 575.98px) {
-  .services-layout {
-    gap: 2rem;
+@media (max-width: 600px) {
+
+  .services-detail {
+    padding: 58px 0;
+  }
+
+  .services-detail .services-layout {
+    gap: 35px;
+  }
+
+  .service-block {
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+  }
+
+  .service-block h3 {
+    font-size: 1rem;
+  }
+
+  .service-block p {
+    font-size: 0.85rem;
   }
 
   .services-gallery,
@@ -196,6 +273,16 @@ import { asset } from '../utils/paths';
   .services-image-small {
     aspect-ratio: 1 / 1;
   }
+
 }
 
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .services-gallery img {
+    transition: none;
+  }
+}
 </style>
